@@ -1,0 +1,33 @@
+{
+  "name": "facerecognition",
+  "version": "1.0.0",
+  "description": "",
+  "main": "faceRec.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@nodertc/dtls": "^0.6.0",
+    "@tensorflow/tfjs": "^1.2.10",
+    "@tensorflow/tfjs-converter": "^1.2.10",
+    "@tensorflow/tfjs-core": "^1.2.10",
+    "@tensorflow/tfjs-data": "^1.2.10",
+    "@tensorflow/tfjs-layers": "^1.2.10",
+    "@tensorflow/tfjs-node": "^1.2.10",
+    "@types/sharp": "^0.22.3",
+    "bufferutil": "^4.0.1",
+    "discord.js": "^11.5.1",
+    "install": "^0.13.0",
+    "npm": "^6.12.0",
+    "sharp": "^0.23.1",
+    "websocket": "^1.0.30",
+    "ws": "^7.1.2",
+    "zucc": "^0.1.2"
+  },
+  "devDependencies": {
+    "@types/ws": "^6.0.3",
+    "eslint": "^6.4.0"
+  }
+}

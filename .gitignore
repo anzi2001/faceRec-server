@@ -1,0 +1,4 @@
+faceRec_token.key
+node_modules
+tempImages/*
+tf_train/croppedImags

@@ -29,8 +29,7 @@ class threshHoldCallback(tf.keras.callbacks.Callback):
 
 print(tf.version.VERSION)
 
-(imagePaths, imageLabels),i = fDT.getFilePathsWithLabels("../tempImages",os.getcwd())
-print(i)
+imagePaths, imageLabels,i = fDT.getFilePathsWithLabels("../tempImages",os.getcwd(),writeToJson=True)
 print(os.getcwd())
 
 readyImages = numpy.empty([len(imageLabels), 256, 256, 3], numpy.int32)
@@ -41,9 +40,9 @@ print(f"image shape is {readyImages.shape}")
 del imagePaths
 
 model = tf.keras.Sequential([
-    tf.keras.layers.Conv2D(filters=32, kernel_size=(5, 5), input_shape=(256, 256, 3), activation='relu', strides=2),
+    tf.keras.layers.Conv2D(filters=32, kernel_size=(8, 8), input_shape=(256, 256, 3), activation='relu',strides=(2,2)),
     tf.keras.layers.MaxPooling2D(2, 2),
-    tf.keras.layers.Conv2D(64, (5, 5), activation='relu', strides=2),
+    tf.keras.layers.Conv2D(64, (8, 8), activation='relu', strides=(2,2)),
     tf.keras.layers.MaxPooling2D(4, 4),
     tf.keras.layers.Flatten(),
     tf.keras.layers.Dense(256, activation='relu'),
@@ -53,7 +52,8 @@ model.compile(optimizer=tf.keras.optimizers.Adam(),
               loss=tf.keras.losses.SparseCategoricalCrossentropy(),
               metrics=[tf.keras.metrics.SparseCategoricalAccuracy()])
 print(imageLabels)
-model.fit(readyImages, numpy.array(imageLabels), epochs=50, callbacks=[threshHoldCallback()])
+
+history = model.fit(readyImages, numpy.array(imageLabels),epochs=50,batch_size=16, callbacks=[threshHoldCallback()])
 
 model.save("models/CNNCropped.h5", overwrite=True, include_optimizer=True)
 
